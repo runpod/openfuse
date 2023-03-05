@@ -43,7 +43,7 @@ function ProtectedPage() {
   return (
     <div>
       <Head>
-        <title>SuperTokens 💫</title>
+        <title>SuperTokens</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>

@@ -9,7 +9,7 @@ export let backendConfig = (): AuthConfig => {
     framework: "express",
     supertokens: {
       // this is the location of the SuperTokens core.
-      connectionURI: "https://try.supertokens.com",
+      connectionURI: process.env.SUPERTOKENS_URI,
     },
     appInfo,
     // recipeList contains all the modules that you want to
@@ -20,8 +20,8 @@ export let backendConfig = (): AuthConfig => {
           // We have provided you with development keys which you can use for testing.
           // IMPORTANT: Please replace them with your own OAuth keys for production use.
           ThirdPartyPasswordlessNode.Google({
-            clientId: "1060725074195-kmeum4crr01uirfl2op9kd5acmi9jutn.apps.googleusercontent.com",
-            clientSecret: "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",
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
           }),
         ],
         contactMethod: "EMAIL",
@@ -29,7 +29,7 @@ export let backendConfig = (): AuthConfig => {
       }),
       SessionNode.init(),
       Dashboard.init({
-        apiKey: "supertokens_is_awesome",
+        apiKey: process.env.SUPERTOKENS_KEY,
       }),
     ],
     isInServerlessEnv: true,

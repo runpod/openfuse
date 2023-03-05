@@ -4,6 +4,7 @@ import * as SuperTokensConfig from "../config/frontendConfig"
 import Head from "next/head"
 import Session from "supertokens-auth-react/recipe/session"
 import SuperTokensReact, { SuperTokensWrapper } from "supertokens-auth-react"
+import Layout from "@/components/layout"
 
 if (typeof window !== "undefined") {
   SuperTokensReact.init(SuperTokensConfig.frontendConfig())
@@ -36,11 +37,11 @@ function MyApp({ Component, pageProps }): JSX.Element {
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
+    <Layout>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <MyApp Component={Component} pageProps={pageProps} />
-    </>
+    </Layout>
   )
 }
