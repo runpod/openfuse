@@ -28,20 +28,18 @@ function MyApp({ Component, pageProps }): JSX.Element {
     return null
   }
 
-  return (
-    <SuperTokensWrapper>
-      <Component {...pageProps} />
-    </SuperTokensWrapper>
-  )
+  return <Component {...pageProps} />
 }
 
 export default function App({ Component, pageProps }) {
   return (
-    <Layout>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <MyApp Component={Component} pageProps={pageProps} />
-    </Layout>
+    <SuperTokensWrapper>
+      <Layout>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
+        <MyApp Component={Component} pageProps={pageProps} />
+      </Layout>
+    </SuperTokensWrapper>
   )
 }

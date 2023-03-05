@@ -2,7 +2,7 @@ import React from "react"
 import Head from "next/head"
 import SessionReact from "supertokens-auth-react/recipe/session"
 import SuperTokensReact from "supertokens-auth-react"
-import { useSessionContext } from "supertokens-auth-react/recipe/session"
+import { useSessionContext, getUserId } from "supertokens-auth-react/recipe/session"
 
 interface ILink {
   name: string
@@ -11,6 +11,8 @@ interface ILink {
 
 function ProtectedPage() {
   const session = useSessionContext()
+
+  console.log(getUserId())
 
   async function logoutClicked() {
     await SessionReact.signOut()
@@ -25,20 +27,7 @@ function ProtectedPage() {
     }
   }
 
-  if (session.loading === true) {
-    return null
-  }
-
-  function openLink(url: string) {
-    window.open(url, "_blank")
-  }
-
-  const links: ILink[] = [
-    {
-      name: "Sign Out",
-      onClick: logoutClicked,
-    },
-  ]
+  if (session.loading === true) return null
 
   return (
     <div>
@@ -53,15 +42,6 @@ function ProtectedPage() {
           <div>{session.userId}</div>
           <div onClick={fetchUserData}>Call API</div>
         </div>
-      </div>
-      <div>
-        {links.map((link) => (
-          <div key={link.name}>
-            <div role={"button"} onClick={link.onClick}>
-              {link.name}
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   )
