@@ -1,18 +1,19 @@
+import { ThemeProvider } from "@mui/material/"
+import { useSessionContext } from "supertokens-auth-react/recipe/session"
 import { useState } from "react"
-import AddIcon from "@mui/icons-material/Add"
 import Backdrop from "@mui/material/Backdrop"
-import Fab from "@mui/material/Fab"
+import Create from "./create"
 import Link from "next/link"
+import LoginIcon from "@mui/icons-material/Login"
 import LogoutIcon from "@mui/icons-material/Logout"
+import SessionReact from "supertokens-auth-react/recipe/session"
 import SettingsIcon from "@mui/icons-material/Settings"
 import SpeedDial from "@mui/material/SpeedDial"
 import SpeedDialAction from "@mui/material/SpeedDialAction"
 import Stack from "@mui/material/Stack"
-import Typography from "@mui/material/Typography"
-import SessionReact from "supertokens-auth-react/recipe/session"
 import SuperTokensReact from "supertokens-auth-react"
-import { useSessionContext } from "supertokens-auth-react/recipe/session"
-import LoginIcon from "@mui/icons-material/Login"
+import theme from "./theme"
+import Typography from "@mui/material/Typography"
 
 export default function Layout({ children }) {
   const [open, setOpen] = useState(false)
@@ -30,19 +31,10 @@ export default function Layout({ children }) {
   }
 
   return (
-    <>
-      <Stack
-        alignItems="center"
-        sx={{ bottom: 60, left: 0, m: "0 auto", position: "absolute", right: 0 }}
-      >
-        <Link href="/create">
-          <Fab aria-label="add" variant="extended">
-            <AddIcon sx={{ mr: 0.5 }} /> Create
-          </Fab>
-        </Link>
-      </Stack>
+    <ThemeProvider theme={theme}>
+      <Create />
 
-      <Stack alignItems="center" direction="row" justifyContent="center" mt={3}>
+      <Stack alignItems="center" direction="row" justifyContent="center" mt={4}>
         <Link href="/">
           <Typography
             fontSize={20}
@@ -89,6 +81,6 @@ export default function Layout({ children }) {
         </SpeedDial>
       </Stack>
       {children}
-    </>
+    </ThemeProvider>
   )
 }
